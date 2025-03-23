@@ -1,3 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #4ade80;
+  --secondary-color: #3b82f6;
+  --accent-color: #f43f5e;
+  --widget-bg: #1e1e1e;
+  --widget-border: #333333;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --green: #10b981;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+@layer components {
+  .ncurses-container {
+    @apply bg-[#121212] text-[#e0e0e0] p-4 rounded border border-[#333] shadow-md;
+  }
+
+  .ncurses-button {
+    @apply px-3 py-1.5 bg-[#333] border border-[#444] text-[#e0e0e0] rounded 
+           hover:bg-[#444] active:bg-[#555] cursor-pointer transition-colors
+           focus:outline-none focus:ring-2 focus:ring-[#4ade80] focus:ring-opacity-50;
+  }
+
+  .ncurses-input {
+    @apply px-3 py-1.5 bg-[#222] border border-[#444] text-[#e0e0e0] rounded 
+           focus:outline-none focus:ring-2 focus:ring-[#4ade80] box-border
+           placeholder:text-gray-500;
+  }
+
+  .widget {
+    @apply bg-[#1e1e1e] border border-[#333] rounded-md shadow-lg 
+           overflow-hidden flex flex-col;
+  }
+
+  .widget-header {
+    @apply flex justify-between items-center p-2 bg-[#252525] border-b border-[#333]
+           text-sm font-bold;
+  }
+
+  .widget-content {
+    @apply p-3 flex-grow;
+  }
+}
+
+/* Draggable widget styles */
+.react-draggable {
+  z-index: 1;
+  position: absolute;
+}
+
+.react-draggable.dragging {
+  z-index: 100;
+  opacity: 0.8;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: minmax(200px, auto);
+  grid-gap: 1rem;
+}
+
+/* Transitions */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.zapt-badge {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #222;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+  border: 1px solid #333;
+}
